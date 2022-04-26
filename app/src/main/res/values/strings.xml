@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">English Score</string>
+
+    <!-- Menu -->
+    <string name="get_my_certificate">Get my certificate</string>
+    <string name="level_achieved">Level Achieved</string>
+    <string name="lottie_animation">particle_explosion.json</string>
+</resources>
