@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="scoreViewModel"
+            type="com.englishscore.interview.ui.viewmodels.ScoreViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/edu_purple"
+        android:orientation="vertical">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/score_button_left_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/progress_bar_left_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.21" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/progress_bar_right_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.79" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/score_button_right_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.90" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/score_text_left_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/score_text_right_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/score_text_top_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.16" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/score_text_bottom_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.50" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/progress_bar_top_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.56" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/certificiate_button_bottom_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.96" />
+
+        <TextView
+            android:id="@+id/level_achieved"
+            style="@style/MediumTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:elevation="3dp"
+            android:text="@string/level_achieved"
+            android:visibility="@{scoreViewModel.areLevelAndAnimationShowing ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/score_text_top_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            scaleType="centerInside"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:translationY="-150dp"
+            app:animationView="@{scoreViewModel.areLevelAndAnimationShowing}"
+            app:layout_constraintBottom_toBottomOf="@id/score_text"
+            app:layout_constraintEnd_toEndOf="@id/score_text"
+            app:layout_constraintStart_toStartOf="@id/score_text"
+            app:layout_constraintTop_toBottomOf="@id/score_text"
+            app:lottie_fileName="@string/lottie_animation"
+            app:lottie_scale="5"
+            app:lottie_repeatCount="1"
+            app:lottie_loop="false"
+            app:lottie_speed="0.6" />
+
+        <TextView
+            android:id="@+id/score_text_animated"
+            style="@style/LargeTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:background="@drawable/red_rounded_background"
+            android:gravity="center"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@id/score_text_right_guideline"
+            app:layout_constraintStart_toEndOf="@id/score_text_left_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/score_text"
+            style="@style/LargeTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:background="@drawable/red_rounded_background"
+            android:gravity="center"
+            android:text="@{scoreViewModel.scoreProgressValue}"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/score_text_right_guideline"
+            app:layout_constraintStart_toEndOf="@id/score_text_left_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/score_text_top_guideline" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:max="100"
+            android:progress="@{scoreViewModel.percentProgressValue}"
+            android:visibility="@{scoreViewModel.isProgressBarVisible() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/score_button_right_guideline"
+            app:layout_constraintStart_toEndOf="@+id/score_button_left_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/progress_bar_top_guideline"
+            app:layout_constraintVertical_bias="0.0"
+            app:progressBar="@{scoreViewModel.numberOfIntervals}" />
+
+        <Button
+            android:id="@+id/get_certificate_button"
+            style="@style/ButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/get_my_certificate"
+            android:visibility="@{scoreViewModel.isButtonShowing() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/certificiate_button_bottom_guideline"
+            app:layout_constraintEnd_toStartOf="@id/score_button_right_guideline"
+            app:layout_constraintStart_toEndOf="@id/score_button_left_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
